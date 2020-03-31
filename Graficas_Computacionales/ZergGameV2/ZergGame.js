@@ -45,19 +45,11 @@ function animate() {
             icoBox = new THREE.Box3().setFromObject(objCollBoxes[index]);
 
             if(knotBox.intersectsBox(icoBox)){
-                vidas--;
                 scene.remove(object);
                 scene.remove(objCollBoxes[index])
-                objectList.splice(index,1)
-                objCollBoxes.splice(index,1)
                 console.log(vidas)
                 console.log(objectList.length)
                 console.log(objCollBoxes.length)
-                if(vidas<0){
-                    scene.remove(objectCenter);
-                    scene.remove(objectCenterBBox)
-                    objectList2.splice(0,1)
-                }
             }
 
             object.rotation.y -= angle / 4;
@@ -68,23 +60,23 @@ function animate() {
                 det4 = Math.random()
                 if(det4 < 1/3){
                     if(puntos < 1000){
-                        object.position.x += Math.sign(object.position.x) * -.3
+                        object.position.x += Math.sign(object.position.x) * -.1
                     }else if(puntos >=1000 && puntos < 3000){
-                        object.position.x += Math.sign(object.position.x) * -.3
+                        object.position.x += Math.sign(object.position.x) * -.2
                     }else if(puntos >=3000 && puntos < 8000){
-                        object.position.x += Math.sign(object.position.x) * -.3
+                        object.position.x += Math.sign(object.position.x) * -.4
                     }else{
-                        object.position.x += Math.sign(object.position.x) * -.3
+                        object.position.x += Math.sign(object.position.x) * -.6
                     }
                 }else if(det4<2/3 && det4>=1/3){
                     if(puntos < 1000){
-                        object.position.z += Math.sign(object.position.z) * -.3
+                        object.position.z += Math.sign(object.position.z) * -.1
                     }else if(puntos >=1000 && puntos < 3000){
-                        object.position.z += Math.sign(object.position.z) * -.3
+                        object.position.z += Math.sign(object.position.z) * -.2
                     }else if(puntos >=3000 && puntos < 8000){
-                        object.position.z += Math.sign(object.position.z) * -.3
+                        object.position.z += Math.sign(object.position.z) * -.4
                     }else{
-                        object.position.z += Math.sign(object.position.z) * -.3
+                        object.position.z += Math.sign(object.position.z) * -.6
                     }
                     
                 }else{
@@ -158,30 +150,17 @@ function createScene(canvas)
     let objectCenter = new THREE.Mesh( geometryCenter, new THREE.MeshNormalMaterial() );
     objectCenterBBox = new THREE.BoxHelper(objectCenter, 0x000000);
     objectCenterBBox.update();
-    objectCenterBBox.visible = true;
+    objectCenterBBox.visible = false;
     objectList2.push(objectCenter)
 
     scene.add( objectCenter );
-    scene.add(objectCenterBBox)
-
-    let object = new THREE.Mesh( geometry, new THREE.MeshToonMaterial( { color: Math.random() * 0xffffff } ) );
-        let objectBBox = new THREE.BoxHelper(object, 0x000000);
-        objectBBox.update();
-        objectBBox.visible = true;
-        objCollBoxes.push(objectBBox)
-        object.position.z = 50
-        object.position.x = 50 
-        objectList.push(object)
-        scene.add( object );
-        scene.add(objectBBox);
-    
-    
-    for ( let i = 0; i < 10; i ++ ) 
+    scene.add(objectCenterBBox);
+    for ( let i = 0; i < 100; i ++ ) 
     {
         let object = new THREE.Mesh( geometry, new THREE.MeshToonMaterial( { color: Math.random() * 0xffffff } ) );
         let objectBBox = new THREE.BoxHelper(object, 0x000000);
         objectBBox.update();
-        objectBBox.visible = true;
+        objectBBox.visible = false;
         objCollBoxes.push(objectBBox)
         
         object.name = 'Ico_' + i;
@@ -306,8 +285,6 @@ function onDocumentMouseDown(event)
         scene.remove(CLICKED)
         index = ((CLICKED.name).split("_"))[1]
         scene.remove(objCollBoxes[index])
-        objectList.splice(index,1)
-        objCollBoxes.splice(index,1)
         console.log(objectList.length)
         console.log(objCollBoxes.length)
     } 
