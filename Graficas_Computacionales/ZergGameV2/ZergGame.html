@@ -2,7 +2,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-<title>Three.js Interaction</title>
+<title>Pokemon ZergGame</title>
 
 <script src="../libs/jquery-3.4.1/jquery-3.4.1.min.js"></script>
 <script src="../libs/jquery-ui/jquery-ui.js"></script>
@@ -26,8 +26,8 @@
 
 <style>
     html, body {
-      width: 800;
-      height: 600;
+      width: 100%;
+      height: 100%;
       margin: 0px;
       border: 0;
       overflow: hidden; 
@@ -36,23 +36,17 @@
 </style>
 
 <script type="text/javascript">
-
-
   
 	$(document).ready(
 			function() {
 
-                var canvas = document.getElementById("webglcanvas");
-                
+				var canvas = document.getElementById("webglcanvas");
+
                 createScene(canvas);
 
-                run();
-                
-               
+		        run();
 			}
-    );
-   
-    
+	);
 
 </script>
 
@@ -60,18 +54,13 @@
 <body>
 
 <div id="container">
-    
-    <div id="title">
-        Protect the Entanglement
-    </div>
-    <div id='puntaje'>
-    </div>
-
     <canvas id="webglcanvas"></canvas>
-    
+    <div id ="title">
+        ¡Proteje a Mew! (P.D. Tarda en cargar)
+        <div id= "puntaje">
+            SCORE: 000
+        </div> 
+    </div> 
 </div>
-
-
-
 
 </html>
